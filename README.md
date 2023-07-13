@@ -31,3 +31,6 @@ Running
 cd build/main/source/
 ls -al
 ./main
+
+Installing
+sudo apt-get install libzmq3-dev
