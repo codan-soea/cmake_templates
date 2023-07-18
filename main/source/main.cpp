@@ -5,6 +5,10 @@
 
 #include "zmq_addon.hpp"
 #include <zmq.hpp>
+
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/basic_file_sink.h"
+
 int main() {
 
     std::cout << "Simple Cmake Template...." << std::endl;
@@ -12,6 +16,11 @@ int main() {
     std::cout << "Main Module = " << MAIN_MODULE_NAME << std::endl;
 
     std::cout << "Lib Module  = " << LIB_MODULE_NAME << std::endl;
+    
+    spdlog::info("Welcome to spdlog!");
+    spdlog::error("Some error message with arg: {}", 1);
+    spdlog::warn("Easy padding in numbers like {:08d}", 12);
+    
     zmq::context_t ctx;
     zmq::socket_t sock(ctx, zmq::socket_type::push);
     sock.bind("inproc://test");
