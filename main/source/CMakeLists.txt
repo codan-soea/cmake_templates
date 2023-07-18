@@ -13,6 +13,14 @@ FetchContent_Declare(
         GIT_PROGRESS TRUE
 )
 
+include(FetchContent)
+
+FetchContent_Declare(json
+    GIT_REPOSITORY https://github.com/nlohmann/json
+    GIT_TAG v3.11.2
+    GIT_PROGRESS TRUE
+)
+FetchContent_MakeAvailable(json)
 
 FetchContent_GetProperties(spdlog)
 if (NOT spdlog_POPULATED)
@@ -56,4 +64,4 @@ set(SOURCE_FILES main.cpp)
 add_executable(main ${SOURCE_FILES})
 
 target_include_directories(main PUBLIC ${ZeroMQ_INCLUDE_DIR})
-target_link_libraries(main PRIVATE lib PUBLIC ${ZeroMQ_LIBRARY} spdlog::spdlog PRIVATE asio::asio)
+target_link_libraries(main PRIVATE lib PUBLIC ${ZeroMQ_LIBRARY} spdlog::spdlog PRIVATE asio::asio PRIVATE nlohmann_json::nlohmann_json)

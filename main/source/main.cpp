@@ -12,6 +12,10 @@
 #include <asio.hpp>
 #include <time.h>
 
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
 asio::io_context io;
 asio::steady_timer t(io, asio::chrono::seconds(5));
 
@@ -61,6 +65,12 @@ int main() {
     spdlog::info("Welcome to spdlog!");
     spdlog::error("Some error message with arg: {}", 1);
     spdlog::warn("Easy padding in numbers like {:08d}", 12);
+    
+    json j;
+    j["pi"] = 3.141;
+    j["name"] = "Aung";
+    
+    std::cout << j.dump() << std::endl;
       
     std::cout <<  getTime() <<  ": Wait for 10 seconds... " << std::endl;
     
